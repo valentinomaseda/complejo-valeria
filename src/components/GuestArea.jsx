@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const GuestArea = () => {
   return (
-    <section className="py-24 bg-beige-100 overflow-hidden">
+    <section className="py-24 bg-cream-100 overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center relative">
           
@@ -15,13 +15,13 @@ const GuestArea = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-6xl font-serif text-charcoal mb-6 leading-tight">
-                ÁREAS <br /> <span className="italic text-moss">COMUNES</span>
+              <h2 className="text-4xl md:text-6xl font-serif text-forest mb-6 leading-tight">
+                ÁREAS <br /> <span className="italic text-terracotta">COMUNES</span>
               </h2>
               <p className="text-gray-600 mb-8 max-w-md leading-relaxed font-light">
                 Diseñado para inspirar calma y conexión. Nuestros espacios comunes son una extensión de la naturaleza que nos rodea, con arquitectura que respeta el silencio y la luz.
               </p>
-              <a href="#" className="inline-block border-b border-charcoal pb-1 text-charcoal hover:text-moss hover:border-moss transition-colors tracking-widest text-sm uppercase">
+              <a href="#" className="inline-block border-b border-forest pb-1 text-forest hover:text-terracotta hover:border-terracotta transition-colors tracking-widest text-sm uppercase">
                 Explorar Espacios
               </a>
             </motion.div>
@@ -42,7 +42,7 @@ const GuestArea = () => {
                 className="w-full h-[500px] object-cover shadow-xl"
               />
               {/* Decorative element */}
-              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-beige-200 -z-10"></div>
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-cream-200 -z-10"></div>
             </motion.div>
           </div>
 
