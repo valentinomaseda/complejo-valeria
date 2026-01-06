@@ -43,7 +43,7 @@ const Hero = () => {
             <Calendar className="text-terracotta w-5 h-5" />
             <div className="text-left">
               <p className="text-xs text-gray-500 uppercase tracking-wider">Check-in</p>
-              <p className="text-forest font-medium">Add Date</p>
+              <p className="text-forest font-medium">Agregar fecha</p>
             </div>
           </div>
 
@@ -51,16 +51,16 @@ const Hero = () => {
             <Calendar className="text-terracotta w-5 h-5" />
             <div className="text-left">
               <p className="text-xs text-gray-500 uppercase tracking-wider">Check-out</p>
-              <p className="text-forest font-medium">Add Date</p>
+              <p className="text-forest font-medium">Agregar fecha</p>
             </div>
           </div>
 
           <div className="flex items-center gap-3 w-full md:w-auto border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:pr-6">
             <Users className="text-terracotta w-5 h-5" />
             <div className="text-left">
-              <p className="text-xs text-gray-500 uppercase tracking-wider">Guests</p>
+              <p className="text-xs text-gray-500 uppercase tracking-wider">Viajeros</p>
               <div className="flex items-center gap-2">
-                <span className="text-forest font-medium">2 Adults</span>
+                <span className="text-forest font-medium">2 Adultos</span>
                 <ChevronDown className="w-4 h-4 text-gray-400" />
               </div>
             </div>

@@ -20,9 +20,13 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <div className={`text-2xl font-serif font-bold tracking-widest ${isScrolled ? 'text-forest' : 'text-white'}`}>
-          CV
-        </div>
+        <img 
+          src="/logo-png.png" 
+          alt="Complejo Valeria" 
+          className={`h-16 w-auto transition-all duration-300 ${
+            isScrolled ? 'brightness-0' : 'brightness-0 invert'
+          }`}
+        />
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
