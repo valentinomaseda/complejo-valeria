@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -20,13 +21,18 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <img 
-          src="/logo-png.png" 
-          alt="Complejo Valeria" 
-          className={`h-16 w-auto transition-all duration-300 ${
-            isScrolled ? 'brightness-0' : 'brightness-0 invert'
-          }`}
-        />
+        <Link 
+          to="/" 
+          onClick={() => window.scrollTo(0, 0)}
+        >
+          <img 
+            src="/logo-png.png" 
+            alt="Complejo Valeria" 
+            className={`h-16 w-auto transition-all duration-300 ${
+              isScrolled ? 'brightness-0' : 'brightness-0 invert'
+            }`}
+          />
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
