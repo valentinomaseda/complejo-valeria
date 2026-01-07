@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, Users, ChevronDown } from 'lucide-react';
+import { Calendar, Users, ChevronDown, Minus, Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
 import DatePicker, { registerLocale } from "react-datepicker";
 import { es } from 'date-fns/locale/es';
@@ -11,6 +11,9 @@ registerLocale('es', es);
 const Hero = () => {
   const [checkIn, setCheckIn] = useState(null);
   const [checkOut, setCheckOut] = useState(null);
+  const [adults, setAdults] = useState(2);
+  const [children, setChildren] = useState(0);
+  const [isViajerosOpen, setIsViajerosOpen] = useState(false);
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background Image */}
@@ -94,15 +97,76 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 w-full md:flex-1 border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:px-6">
+          <div 
+            className="relative flex items-center gap-3 w-full md:flex-1 border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:px-6 cursor-pointer"
+            onClick={() => setIsViajerosOpen(!isViajerosOpen)}
+          >
             <Users className="text-terracotta w-5 h-5" />
             <div className="text-left">
               <p className="text-xs text-gray-500 uppercase tracking-wider">Viajeros</p>
               <div className="flex items-center gap-2">
-                <span className="text-forest font-medium">2 Adultos</span>
-                <ChevronDown className="w-4 h-4 text-gray-400" />
+                <span className="text-forest font-medium">
+                  {adults} Adultos{children > 0 ? `, ${children} Menores` : ''}
+                </span>
+                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${isViajerosOpen ? 'rotate-180' : ''}`} />
               </div>
             </div>
+
+            {isViajerosOpen && (
+              <>
+                <div 
+                  className="fixed inset-0 z-40" 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsViajerosOpen(false);
+                  }} 
+                />
+                <div 
+                  className="absolute top-full left-0 mt-4 w-72 bg-white rounded-lg shadow-xl p-5 z-50 border border-gray-100 cursor-default"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-forest font-medium">Adultos</span>
+                    <div className="flex items-center gap-3">
+                      <button 
+                        onClick={() => setAdults(Math.max(1, adults - 1))}
+                        className="p-1.5 rounded-full border border-gray-200 hover:border-terracotta text-forest hover:text-terracotta transition-colors disabled:opacity-50"
+                        disabled={adults <= 1}
+                      >
+                        <Minus size={14} />
+                      </button>
+                      <span className="w-6 text-center text-forest font-medium">{adults}</span>
+                      <button 
+                        onClick={() => setAdults(adults + 1)}
+                        className="p-1.5 rounded-full border border-gray-200 hover:border-terracotta text-forest hover:text-terracotta transition-colors"
+                      >
+                        <Plus size={14} />
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-between items-center">
+                    <span className="text-forest font-medium">Menores</span>
+                    <div className="flex items-center gap-3">
+                      <button 
+                        onClick={() => setChildren(Math.max(0, children - 1))}
+                        className="p-1.5 rounded-full border border-gray-200 hover:border-terracotta text-forest hover:text-terracotta transition-colors disabled:opacity-50"
+                        disabled={children <= 0}
+                      >
+                        <Minus size={14} />
+                      </button>
+                      <span className="w-6 text-center text-forest font-medium">{children}</span>
+                      <button 
+                        onClick={() => setChildren(children + 1)}
+                        className="p-1.5 rounded-full border border-gray-200 hover:border-terracotta text-forest hover:text-terracotta transition-colors"
+                      >
+                        <Plus size={14} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
 
           <button className="w-full md:w-auto bg-terracotta text-white px-8 py-3 hover:bg-terracotta-dark transition-colors uppercase tracking-widest text-sm md:ml-6">
