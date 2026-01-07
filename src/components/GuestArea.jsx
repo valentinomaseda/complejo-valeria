@@ -21,7 +21,7 @@ const GuestArea = () => {
               <p className="text-gray-600 mb-8 max-w-md leading-relaxed font-light">
                 Diseñado para inspirar calma y conexión. Nuestros espacios comunes son una extensión de la naturaleza que nos rodea, con arquitectura que respeta el silencio y la luz.
               </p>
-              <a href="#" className="inline-block border-b border-forest pb-1 text-forest hover:text-terracotta hover:border-terracotta transition-colors tracking-widest text-sm uppercase">
+              <a href="/spaces" className="inline-block border-b border-forest pb-1 text-forest hover:text-terracotta hover:border-terracotta transition-colors tracking-widest text-sm uppercase">
                 Explorar Espacios
               </a>
             </motion.div>
@@ -37,7 +37,7 @@ const GuestArea = () => {
               className="relative"
             >
               <img 
-                src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                src="https://images.unsplash.com/photo-1722767912373-8f9942a4cc83?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                 alt="Lobby Area" 
                 className="w-full h-[500px] object-cover shadow-xl"
               />
