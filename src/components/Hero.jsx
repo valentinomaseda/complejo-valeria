@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Calendar, Users, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
+import DatePicker, { registerLocale } from "react-datepicker";
+import { es } from 'date-fns/locale/es';
+import "react-datepicker/dist/react-datepicker.css";
+import "../datepicker.css";
+
+registerLocale('es', es);
 
 const Hero = () => {
+  const [checkIn, setCheckIn] = useState(null);
+  const [checkOut, setCheckOut] = useState(null);
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* Background Image */}
@@ -37,25 +45,56 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="bg-cream-50 p-4 md:p-6 shadow-2xl max-w-4xl w-full flex flex-col md:flex-row gap-4 items-center justify-between"
+          className="bg-cream-50 p-4 md:p-6 shadow-2xl max-w-4xl w-full flex flex-col md:flex-row items-center"
         >
-          <div className="flex items-center gap-3 w-full md:w-auto border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:pr-6">
+          <div className="relative flex items-center gap-3 w-full md:flex-1 border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:pr-6">
             <Calendar className="text-terracotta w-5 h-5" />
-            <div className="text-left">
+            <div className="text-left w-full relative z-10 pointer-events-none">
               <p className="text-xs text-gray-500 uppercase tracking-wider">Check-in</p>
-              <p className="text-forest font-medium">Agregar fecha</p>
+              <p className="text-forest font-medium">
+                {checkIn ? checkIn.toLocaleDateString() : 'Agregar fecha'}
+              </p>
+            </div>
+            <div className="absolute inset-0 w-full h-full z-20">
+               <DatePicker 
+                selected={checkIn}
+                onChange={(date) => {
+                    setCheckIn(date);
+                    if (checkOut && date > checkOut) {
+                        setCheckOut(null);
+                    }
+                }}
+                minDate={new Date()}
+                placeholderText="Agregar fecha"
+                className="w-full h-full cursor-pointer opacity-0"
+                wrapperClassName="w-full h-full"
+                locale="es"
+               />
             </div>
           </div>
 
-          <div className="flex items-center gap-3 w-full md:w-auto border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:pr-6">
+          <div className="relative flex items-center gap-3 w-full md:flex-1 border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:px-6">
             <Calendar className="text-terracotta w-5 h-5" />
-            <div className="text-left">
+            <div className="text-left w-full relative z-10 pointer-events-none">
               <p className="text-xs text-gray-500 uppercase tracking-wider">Check-out</p>
-              <p className="text-forest font-medium">Agregar fecha</p>
+              <p className="text-forest font-medium">
+                {checkOut ? checkOut.toLocaleDateString() : 'Agregar fecha'}
+              </p>
+            </div>
+            <div className="absolute inset-0 w-full h-full z-20">
+               <DatePicker 
+                selected={checkOut}
+                onChange={(date) => setCheckOut(date)}
+                minDate={checkIn || new Date()}
+                placeholderText="Agregar fecha"
+                className="w-full h-full cursor-pointer opacity-0"
+                wrapperClassName="w-full h-full"
+                locale="es"
+               />
             </div>
           </div>
 
-          <div className="flex items-center gap-3 w-full md:w-auto border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:pr-6">
+          <div className="flex items-center gap-3 w-full md:flex-1 border-b md:border-b-0 md:border-r border-gray-200 pb-2 md:pb-0 md:px-6">
             <Users className="text-terracotta w-5 h-5" />
             <div className="text-left">
               <p className="text-xs text-gray-500 uppercase tracking-wider">Viajeros</p>
@@ -66,8 +105,8 @@ const Hero = () => {
             </div>
           </div>
 
-          <button className="w-full md:w-auto bg-terracotta text-white px-8 py-3 hover:bg-terracotta-dark transition-colors uppercase tracking-widest text-sm">
-            Search
+          <button className="w-full md:w-auto bg-terracotta text-white px-8 py-3 hover:bg-terracotta-dark transition-colors uppercase tracking-widest text-sm md:ml-6">
+            Buscar
           </button>
         </motion.div>
       </div>
